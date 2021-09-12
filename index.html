@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <section id="input-section">
+    <h1>CASES OF CORONAVIRUS IN THE WORLD - COLLECTIVE</h1>
+    <form>
+      <label for="country">Country:</label>
+      <input id="country" type="text" autocomplete="off" placeholder="Input Country Name Or Country Code">
+      <div class="sugestions">
+      </div>
+      <div>
+        <!-- Start date -->
+        <label for="start">Start date:</label>
+        <input type="date" id="start" name="date-starts" value="2020-03-01" min="2020-01-03" max="2021-08-31">
+        <!-- End date -->
+        <label for="end">End date:</label>
+        <input type="date" id="end" name="date-ends" value="2020-04-04" min="2020-01-21" max="2021-09-01">
+      </div>
+      <input type="submit" class="btn" value="Get Results">
+    </form>
+  </section>
+  <section class="results">
+    <h2 id="results-heading"></h2>
+    <canvas id="myChart" style="width:100%;max-width:95vw"></canvas>
+  </section>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
