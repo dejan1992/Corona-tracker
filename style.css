@@ -28,7 +28,7 @@ h1{
 
 form{
   text-align: center;
-position: relative;
+  position: relative;
   color: #fff;
 }
 
@@ -39,7 +39,6 @@ form label{
 }
 
 form #country{
-
   font-size: 16px;
   padding: 15px;
   margin-bottom: 20px;
@@ -101,9 +100,9 @@ form .btn{
 }
 
 form .btn:hover{
-  background-color: rgb(231, 0, 0);
+  background-color: rgb(185, 1, 1);
   transform: scale(1.01);
-cursor: pointer;
+  cursor: pointer;
 }
 
 .results #myChart{ 

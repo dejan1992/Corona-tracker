@@ -1,4 +1,3 @@
-
 const submit = document.querySelector(".btn");
 const country = document.getElementById("country");
 const startDate = document.getElementById("start");
@@ -6,21 +5,19 @@ const endDate = document.getElementById("end");
 const resultsHeading = document.getElementById("results-heading");
 const results = document.querySelector(".results");
 const sugestions = document.querySelector(".sugestions");
-
 let ctx = document.getElementById('myChart');
 let myChart;
 
+//Destroy chart
 country.addEventListener("click", destroy)
 startDate.addEventListener("click", destroy)
 endDate.addEventListener("click", destroy)
 submit.addEventListener("click", destroy)
 
-
-//Search countries.json and filter it
+//Search countries .json and filter it
 const searchCountries = async searchText => {
   const res = await fetch("countries.json");
   const countries = await res.json();
-
 
   // Get matches to current text input
   let matches = countries.filter(country => {
@@ -33,6 +30,7 @@ const searchCountries = async searchText => {
   }
   outputHtml(matches);
 }
+
 // Show results
 const outputHtml = matches => {
   if (matches.length > 0) {
@@ -41,7 +39,7 @@ const outputHtml = matches => {
   }
 }
 
-// Destroy Chart
+// Destroy Chart Function
 function destroy() {
   if (myChart) {
     myChart.destroy();
@@ -74,6 +72,7 @@ async function covid() {
     } else {
       resultsHeading.innerText = `Results for ${results[0].Country}`
 
+      //Results for Chart
       let dateArr = [];
       let casesArr = [];
 
@@ -82,7 +81,6 @@ async function covid() {
         if (num.Province == '') {
           dateArr.push(num.Date.slice(5, 10));
         }
-
       }
 
       // CASES ARRAY
@@ -92,7 +90,7 @@ async function covid() {
         }
       }
 
-      // Chart
+      //Results for Chart
       let xValues = dateArr;
       let yValues = casesArr;
 
@@ -132,7 +130,13 @@ sugestions.addEventListener("click", (e) => {
 })
 
 submit.addEventListener("click", (e) => {
-  if (country.value === '' || endDate.value <= startDate.value) {
+  //Check if endData is smaller then todays date
+  let dateNow = new Date();
+  let dateNowUS = dateNow.toLocaleDateString("en-US");
+  let dateEnd = new Date(endDate.value);
+  let dateEndUS = dateEnd.toLocaleDateString("en-US");
+
+  if (country.value === '' || endDate.value <= startDate.value || dateEndUS > dateNowUS) {
     resultsHeading.innerText = "Check Country and Date!"
     setTimeout(() => {
       resultsHeading.innerText = "";
