@@ -132,17 +132,23 @@ sugestions.addEventListener("click", (e) => {
 submit.addEventListener("click", (e) => {
   //Check if endData is smaller then todays date
   let dateNow = new Date();
-  let dateNowUS = dateNow.toLocaleDateString("en-US");
   let dateEnd = new Date(endDate.value);
-  let dateEndUS = dateEnd.toLocaleDateString("en-US");
 
-  if (country.value === '' || endDate.value <= startDate.value || dateEndUS > dateNowUS) {
-    resultsHeading.innerText = "Check Country and Date!"
+  //Check Date
+  if (startDate.value >= '2020-03-01') {
+    if (country.value === '' || endDate.value <= startDate.value || dateEnd > dateNow) {
+      resultsHeading.innerText = "Check Country and Date!"
+      setTimeout(() => {
+        resultsHeading.innerText = "";
+      }, 1500)
+    } else {
+      covid();
+    }
+  } else {
+    resultsHeading.innerText = "No Data before 01-03-2020!"
     setTimeout(() => {
       resultsHeading.innerText = "";
     }, 1500)
-  } else {
-    covid();
   }
   e.preventDefault();
 });
